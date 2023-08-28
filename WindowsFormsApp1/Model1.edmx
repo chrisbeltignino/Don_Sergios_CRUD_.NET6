@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DON_SERGIOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUTOS">
+          <Key>
+            <PropertyRef Name="ID_AUTO" />
+          </Key>
+          <Property Name="ID_AUTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PATENTE" Type="varchar" MaxLength="15" />
+          <Property Name="ID_MODELO" Type="int" />
+          <Property Name="AÑO" Type="int" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="100" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="100" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="30" />
+          <Property Name="FACEBOOK" Type="varchar" MaxLength="100" />
+          <Property Name="ID_AUTO" Type="int" />
+          <Property Name="ID_SERVICIO" Type="int" />
+        </EntityType>
+        <EntityType Name="MODELOS">
+          <Key>
+            <PropertyRef Name="ID_MODELO" />
+          </Key>
+          <Property Name="ID_MODELO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODELO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="ID_SERVICIO" />
+          </Key>
+          <Property Name="ID_SERVICIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROBLEMAS" Type="varchar" MaxLength="500" />
+          <Property Name="PRUEBAS" Type="varchar" MaxLength="500" />
+          <Property Name="REPUESTOS" Type="varchar" MaxLength="200" />
+          <Property Name="PRECIO" Type="float" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="500" />
+          <Property Name="FECHA_LLEGADA" Type="datetime" />
+          <Property Name="FECHA_SALIDA" Type="datetime" />
+        </EntityType>
+        <Association Name="RELACION_A_AUTOS">
+          <End Role="AUTOS" Type="Self.AUTOS" Multiplicity="0..1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTOS">
+              <PropertyRef Name="ID_AUTO" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ID_AUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RELACION_A_MODELOS">
+          <End Role="MODELOS" Type="Self.MODELOS" Multiplicity="0..1" />
+          <End Role="AUTOS" Type="Self.AUTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODELOS">
+              <PropertyRef Name="ID_MODELO" />
+            </Principal>
+            <Dependent Role="AUTOS">
+              <PropertyRef Name="ID_MODELO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RELACION_A_SERVICIOS">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="0..1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DON_SERGIOSModelStoreContainer">
+          <EntitySet Name="AUTOS" EntityType="Self.AUTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODELOS" EntityType="Self.MODELOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="RELACION_A_AUTOS" Association="Self.RELACION_A_AUTOS">
+            <End Role="AUTOS" EntitySet="AUTOS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="RELACION_A_MODELOS" Association="Self.RELACION_A_MODELOS">
+            <End Role="MODELOS" EntitySet="MODELOS" />
+            <End Role="AUTOS" EntitySet="AUTOS" />
+          </AssociationSet>
+          <AssociationSet Name="RELACION_A_SERVICIOS" Association="Self.RELACION_A_SERVICIOS">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DON_SERGIOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBDON_SERGIOSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUTOS" EntityType="DON_SERGIOSModel.AUTOS" />
+          <EntitySet Name="CLIENTES" EntityType="DON_SERGIOSModel.CLIENTES" />
+          <EntitySet Name="MODELOS" EntityType="DON_SERGIOSModel.MODELOS" />
+          <EntitySet Name="SERVICIOS" EntityType="DON_SERGIOSModel.SERVICIOS" />
+          <AssociationSet Name="RELACION_A_AUTOS" Association="DON_SERGIOSModel.RELACION_A_AUTOS">
+            <End Role="AUTOS" EntitySet="AUTOS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="RELACION_A_MODELOS" Association="DON_SERGIOSModel.RELACION_A_MODELOS">
+            <End Role="MODELOS" EntitySet="MODELOS" />
+            <End Role="AUTOS" EntitySet="AUTOS" />
+          </AssociationSet>
+          <AssociationSet Name="RELACION_A_SERVICIOS" Association="DON_SERGIOSModel.RELACION_A_SERVICIOS">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AUTOS">
+          <Key>
+            <PropertyRef Name="ID_AUTO" />
+          </Key>
+          <Property Name="ID_AUTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PATENTE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ID_MODELO" Type="Int32" />
+          <Property Name="AÑO" Type="Int32" />
+          <NavigationProperty Name="CLIENTES" Relationship="DON_SERGIOSModel.RELACION_A_AUTOS" FromRole="AUTOS" ToRole="CLIENTES" />
+          <NavigationProperty Name="MODELOS" Relationship="DON_SERGIOSModel.RELACION_A_MODELOS" FromRole="AUTOS" ToRole="MODELOS" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FACEBOOK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_AUTO" Type="Int32" />
+          <Property Name="ID_SERVICIO" Type="Int32" />
+          <NavigationProperty Name="AUTOS" Relationship="DON_SERGIOSModel.RELACION_A_AUTOS" FromRole="CLIENTES" ToRole="AUTOS" />
+          <NavigationProperty Name="SERVICIOS" Relationship="DON_SERGIOSModel.RELACION_A_SERVICIOS" FromRole="CLIENTES" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="MODELOS">
+          <Key>
+            <PropertyRef Name="ID_MODELO" />
+          </Key>
+          <Property Name="ID_MODELO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODELO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AUTOS" Relationship="DON_SERGIOSModel.RELACION_A_MODELOS" FromRole="MODELOS" ToRole="AUTOS" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="ID_SERVICIO" />
+          </Key>
+          <Property Name="ID_SERVICIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROBLEMAS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PRUEBAS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="REPUESTOS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Double" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_LLEGADA" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_SALIDA" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CLIENTES" Relationship="DON_SERGIOSModel.RELACION_A_SERVICIOS" FromRole="SERVICIOS" ToRole="CLIENTES" />
+        </EntityType>
+        <Association Name="RELACION_A_AUTOS">
+          <End Type="DON_SERGIOSModel.AUTOS" Role="AUTOS" Multiplicity="0..1" />
+          <End Type="DON_SERGIOSModel.CLIENTES" Role="CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTOS">
+              <PropertyRef Name="ID_AUTO" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ID_AUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RELACION_A_MODELOS">
+          <End Type="DON_SERGIOSModel.MODELOS" Role="MODELOS" Multiplicity="0..1" />
+          <End Type="DON_SERGIOSModel.AUTOS" Role="AUTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODELOS">
+              <PropertyRef Name="ID_MODELO" />
+            </Principal>
+            <Dependent Role="AUTOS">
+              <PropertyRef Name="ID_MODELO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RELACION_A_SERVICIOS">
+          <End Type="DON_SERGIOSModel.SERVICIOS" Role="SERVICIOS" Multiplicity="0..1" />
+          <End Type="DON_SERGIOSModel.CLIENTES" Role="CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DON_SERGIOSModelStoreContainer" CdmEntityContainer="DBDON_SERGIOSEntities">
+          <EntitySetMapping Name="AUTOS">
+            <EntityTypeMapping TypeName="DON_SERGIOSModel.AUTOS">
+              <MappingFragment StoreEntitySet="AUTOS">
+                <ScalarProperty Name="AÑO" ColumnName="AÑO" />
+                <ScalarProperty Name="ID_MODELO" ColumnName="ID_MODELO" />
+                <ScalarProperty Name="PATENTE" ColumnName="PATENTE" />
+                <ScalarProperty Name="ID_AUTO" ColumnName="ID_AUTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="DON_SERGIOSModel.CLIENTES">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+                <ScalarProperty Name="ID_AUTO" ColumnName="ID_AUTO" />
+                <ScalarProperty Name="FACEBOOK" ColumnName="FACEBOOK" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODELOS">
+            <EntityTypeMapping TypeName="DON_SERGIOSModel.MODELOS">
+              <MappingFragment StoreEntitySet="MODELOS">
+                <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+                <ScalarProperty Name="ID_MODELO" ColumnName="ID_MODELO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIOS">
+            <EntityTypeMapping TypeName="DON_SERGIOSModel.SERVICIOS">
+              <MappingFragment StoreEntitySet="SERVICIOS">
+                <ScalarProperty Name="FECHA_SALIDA" ColumnName="FECHA_SALIDA" />
+                <ScalarProperty Name="FECHA_LLEGADA" ColumnName="FECHA_LLEGADA" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="REPUESTOS" ColumnName="REPUESTOS" />
+                <ScalarProperty Name="PRUEBAS" ColumnName="PRUEBAS" />
+                <ScalarProperty Name="PROBLEMAS" ColumnName="PROBLEMAS" />
+                <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

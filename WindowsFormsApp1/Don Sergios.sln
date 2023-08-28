@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRMDonSergios", "FRMDonSergios.csproj", "{A397C266-2ED3-4ED9-B2CE-DBB80486F4A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FRMs", "FRMs", "{1BF085A5-D543-4E8B-BA98-A8CBAF507E14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "..\ClassLibrary1\ClassLibrary.csproj", "{072B282C-5F99-47F2-91E2-8B4B1A55CE94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClassLibraryes", "ClassLibraryes", "{24C5FCD4-9DE3-4E6B-8E5B-7E92647C22A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connection", "Connection", "{81EB710D-5C8E-4783-B998-5216C8767225}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A397C266-2ED3-4ED9-B2CE-DBB80486F4A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A397C266-2ED3-4ED9-B2CE-DBB80486F4A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A397C266-2ED3-4ED9-B2CE-DBB80486F4A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A397C266-2ED3-4ED9-B2CE-DBB80486F4A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072B282C-5F99-47F2-91E2-8B4B1A55CE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072B282C-5F99-47F2-91E2-8B4B1A55CE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072B282C-5F99-47F2-91E2-8B4B1A55CE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072B282C-5F99-47F2-91E2-8B4B1A55CE94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A397C266-2ED3-4ED9-B2CE-DBB80486F4A7} = {1BF085A5-D543-4E8B-BA98-A8CBAF507E14}
+		{072B282C-5F99-47F2-91E2-8B4B1A55CE94} = {24C5FCD4-9DE3-4E6B-8E5B-7E92647C22A7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28B485E8-B607-4DE5-99A8-216CCC695379}
+	EndGlobalSection
+EndGlobal
